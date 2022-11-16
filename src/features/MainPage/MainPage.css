@@ -1,0 +1,28 @@
+.container-1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-2 {
+    display: flex;
+    justify-content: center;
+}
+
+.container-2 > div {
+    width : 300px;
+    margin : 25px;
+}
+
+.title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin : 10px;
+}
+
+.button {
+    text-align: center;
+    margin: 1px;
+    height: 20px;
+    width: 150px;
+}

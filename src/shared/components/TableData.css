@@ -1,0 +1,18 @@
+.col-merge {
+    vertical-align : middle;
+    text-align: center;
+    width: 50%;
+}
+
+.row-merge {
+    text-align: center; 
+}
+
+.table-data{
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
