@@ -23,7 +23,7 @@ function MainPage() {
     useEffect(() => {
         setPressedButton(false)
         console.log(result)
-      }, [pressedButton]);
+      }, [pressedButton, result]);
 
     const handleStartDate = (date) => {
         setInputStartDate(date);
@@ -51,10 +51,12 @@ function MainPage() {
 
     const handleSubmit = async () => {
 
-        strStartDate = convDate(inputStartDate)
-        strEndDate = convDate(inputEndDate)
+        // strStartDate = convDate(inputStartDate)
+        // strEndDate = convDate(inputEndDate)
 
         try {
+            strStartDate = convDate(inputStartDate)
+            strEndDate = convDate(inputEndDate)
             const response = await getDataService.getData({
                 site: selectedOption, 
                 id_sensor: sensorId, 
@@ -67,7 +69,7 @@ function MainPage() {
             setShowDatas(true)
             setResult(response.result);
         } catch (e) {
-            alert(e)
+            alert(e.message)
         }
     };
 
@@ -123,7 +125,7 @@ function MainPage() {
                     <button className="button">Add/Delete Sensor</button>               
                 </div>
             </div>
-            {showDatas ? <div><TableData/></div> : <></>}
+            {showDatas ? <div><TableData result={result}/></div> : <></>}
         </div>
     )
 }
