@@ -10,7 +10,7 @@ function MainPage() {
     const {getDataService} = useDeps();
     const [inputStartDate, setInputStartDate] = useState();
     const [inputEndDate, setInputEndDate] = useState();
-    const [sensorId, setSensorId] = useState("");
+    //const [sensorId, setSensorId] = useState("");
     const [selectedOption, setSelectedOption] = useState("");
     const [pressedButton, setPressedButton] = useState(false);
     const [showDatas, setShowDatas] = useState(false)
@@ -33,9 +33,9 @@ function MainPage() {
         setInputEndDate(date);
     };
 
-    const handleSensorId = (e) => {
-        setSensorId(e.target.value)
-    };
+    // const handleSensorId = (e) => {
+    //     setSensorId(e.target.value)
+    // };
 
     const handleOption = (e) => {
         setSelectedOption(e.target.value)
@@ -59,7 +59,7 @@ function MainPage() {
             strEndDate = convDate(inputEndDate)
             const response = await getDataService.getData({
                 site: selectedOption, 
-                id_sensor: sensorId, 
+                //id_sensor: sensorId, 
                 sdate: strStartDate[0], 
                 edate: strEndDate[0], 
                 stime: strStartDate[1], 
@@ -67,7 +67,7 @@ function MainPage() {
             })
             setPressedButton(true)
             setShowDatas(true)
-            setResult(response.result);
+            setResult(response.resultInternet);
         } catch (e) {
             alert(e.message)
         }
@@ -103,19 +103,19 @@ function MainPage() {
                         />
                     </label>
                 </div>
-                <div>
+                {/* <div>
                     <label>Sensor ID: <br/>
                         <input type="text" onChange={handleSensorId} placeholder="Input Sensor ID"/>
                     </label>
-                </div>
+                </div> */}
                 <div>
                     <label>Site: <br/>
                         <select id="site-names" value={selectedOption} onChange={handleOption}>
                             <option value="" disabled hidden>Choose here</option>
                             <option value="all-site">All Site</option>
-                            <option value="site-a">Site A</option>
-                            <option value="site-b">Site B</option>
-                            <option value="site-c">Site C</option>
+                            <option value="BIB">BIB</option>
+                            <option value="Berau">Berau</option>
+                            <option value="MSIG">MSIG</option>
                             <option value="site-d">Site D</option>
                         </select>
                     </label>

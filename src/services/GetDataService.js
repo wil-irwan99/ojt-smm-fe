@@ -14,7 +14,7 @@ export const getDataService = ({doGet, doPost}) => {
 
     const getData = async (data) => {
         try {
-            return await doPost({url: '/get-data-site-a', data: data})
+            return await doGet({url: `/get-data?site=${data.site}&sdate=${data.sdate}&edate=${data.edate}&stime=${data.stime}&etime=${data.etime}`})
         } catch (e) {
             throw e
         }
