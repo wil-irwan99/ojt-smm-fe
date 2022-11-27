@@ -114,9 +114,12 @@ function MainPage() {
                             <option value="" disabled hidden>Choose here</option>
                             <option value="all-site">All Site</option>
                             <option value="BIB">BIB</option>
-                            <option value="Berau">Berau</option>
+                            <option value="KIM">KIM</option>
+                            <option value="MAL">MAL</option>
+                            <option value="BSL">BSL</option>
+                            <option value="SML">SML</option>
                             <option value="MSIG">MSIG</option>
-                            <option value="site-d">Site D</option>
+                            <option value="BCHO">BCHO</option>
                         </select>
                     </label>
                 </div>
