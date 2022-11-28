@@ -15,15 +15,15 @@ function MainPage() {
     const [pressedButton, setPressedButton] = useState(false);
     const [showDatas, setShowDatas] = useState(false)
 
-    const [result, setResult] = useState()
+    const [resultInter, setResultInter] = useState()
+    const [resultIntra, setResultIntra] = useState()
 
     let strStartDate = []
     let strEndDate = []
 
     useEffect(() => {
         setPressedButton(false)
-        console.log(result)
-      }, [pressedButton, result]);
+      }, [pressedButton, resultInter, resultIntra]);
 
     const handleStartDate = (date) => {
         setInputStartDate(date);
@@ -67,7 +67,8 @@ function MainPage() {
             })
             setPressedButton(true)
             setShowDatas(true)
-            setResult(response.resultInternet);
+            setResultInter(response.resultInternet)
+            setResultIntra(response.resultIntranet)
         } catch (e) {
             alert(e.message)
         }
@@ -128,7 +129,18 @@ function MainPage() {
                     <button className="button">Add/Delete Sensor</button>               
                 </div>
             </div>
-            {showDatas ? <div><TableData result={result}/></div> : <></>}
+            {showDatas ? (
+                <div>
+                    <div>
+                        Internet
+                        <TableData result={resultInter}/>
+                    </div>
+                    <div>
+                        Intranet
+                        <TableData result={resultIntra}/>
+                    </div>
+                </div>
+            ) : <></>}
         </div>
     )
 }
