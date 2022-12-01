@@ -15,7 +15,7 @@ function MainPage() {
     const [pressedButton, setPressedButton] = useState(false);
     const [showDatas, setShowDatas] = useState(false)
 
-    const [resultInter, setResultInter] = useState()
+    const [resultInter, setResultInter] = useState() //[{ id: "", site: "", link: "", average_up: 0, uti_traffic_in: 0, uti_traffic_out: 0, traffic_in: 0, traffic_out: 0, notes: "", bandwidth_cap: 0 }])
     const [resultIntra, setResultIntra] = useState()
 
     let strStartDate = []
@@ -23,6 +23,7 @@ function MainPage() {
 
     useEffect(() => {
         setPressedButton(false)
+        console.log(resultInter)
       }, [pressedButton, resultInter, resultIntra]);
 
     const handleStartDate = (date) => {
@@ -31,6 +32,18 @@ function MainPage() {
 
     const handleEndDate = (date) => {
         setInputEndDate(date);
+    };
+
+    // const handleNotes = (e, index, arrMap) => {
+    //     arrMap[index]["notes"] = e.target.value
+    // };
+
+    const handleInterNotes = (data) => {
+        setResultInter([...data]);
+    };
+
+    const handleIntraNotes = (data) => {
+        setResultIntra([...data]);
     };
 
     // const handleSensorId = (e) => {
@@ -133,11 +146,11 @@ function MainPage() {
                 <div>
                     <div>
                         Internet
-                        <TableData result={resultInter}/>
+                        <TableData handlerNotes={handleInterNotes} result={resultInter}/>
                     </div>
                     <div>
                         Intranet
-                        <TableData result={resultIntra}/>
+                        <TableData handlerNotes={handleIntraNotes} result={resultIntra}/>
                     </div>
                 </div>
             ) : <></>}

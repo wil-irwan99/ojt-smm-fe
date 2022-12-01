@@ -1,3 +1,4 @@
+//import { useEffect } from "react";
 import "./TableData.css"
 
 function TableData(props) {
@@ -7,6 +8,15 @@ function TableData(props) {
     //     { id: 212, a: "Jam", b: 58, c: 83, d: 12, e: 90, f: 78, g: "bebek", h: 55 },
     //   ];
       const data = props.result;
+
+    //   useEffect(() => {
+    //     console.log(data)
+    //   }, [props.result]);
+
+      const handleNotes = (e, index, data) => {
+            data[index]["notes"] = e.target.value
+            props.handlerNotes(data)
+        };
     
       return (
         <table>
@@ -28,13 +38,13 @@ function TableData(props) {
                 </tr>
             </thead>
             <tbody>
-                {data.map((item) => (
+                {data.map((item, index) => (
                     <tr key={item.id}>
                         {Object.entries(item).slice(1).map((val) => {
                             if (val[0] !== "notes") {
                                 return <td>{val[1]}</td>
                             } else {
-                                return <td><textarea rows="5" cols="30"></textarea></td>
+                                return <td><textarea rows="5" cols="30" onChange={e => handleNotes(e, index, data)}></textarea></td>
                             }
                         })}
                     </tr>
