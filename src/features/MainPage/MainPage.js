@@ -23,7 +23,11 @@ function MainPage() {
 
     useEffect(() => {
         setPressedButton(false)
-        console.log(resultInter)
+        // if (inputStartDate <= inputEndDate) {
+        //     console.log("BENAAAAAAAAAAAAAAAAAAARRR")
+        // } else {
+        //     console.log("SALAAAAAAAAAAAAAAAAAAAHHH")
+        // }
       }, [pressedButton, resultInter, resultIntra]);
 
     const handleStartDate = (date) => {
@@ -67,24 +71,43 @@ function MainPage() {
         // strStartDate = convDate(inputStartDate)
         // strEndDate = convDate(inputEndDate)
 
-        try {
-            strStartDate = convDate(inputStartDate)
-            strEndDate = convDate(inputEndDate)
-            const response = await getDataService.getData({
-                site: selectedOption, 
-                //id_sensor: sensorId, 
-                sdate: strStartDate[0], 
-                edate: strEndDate[0], 
-                stime: strStartDate[1], 
-                etime: strEndDate[1]
-            })
-            setPressedButton(true)
-            setShowDatas(true)
-            setResultInter(response.resultInternet)
-            setResultIntra(response.resultIntranet)
-        } catch (e) {
-            alert(e.message)
+        var status = false
+        var today = new Date()
+        var diff = Math.abs(inputStartDate.getTime() - inputEndDate.getTime()) / 3600000;
+        
+        if (inputStartDate < today) {
+            if (inputEndDate < today) {
+                if (diff >= 1) {
+                    if (selectedOption !== ""){
+                        status = true
+                    }
+                }
+            }
         }
+
+        if (status) {
+            try {
+                strStartDate = convDate(inputStartDate)
+                strEndDate = convDate(inputEndDate)
+                const response = await getDataService.getData({
+                    site: selectedOption, 
+                    //id_sensor: sensorId, 
+                    sdate: strStartDate[0], 
+                    edate: strEndDate[0], 
+                    stime: strStartDate[1], 
+                    etime: strEndDate[1]
+                })
+                setPressedButton(true)
+                setShowDatas(true)
+                setResultInter(response.resultInternet)
+                setResultIntra(response.resultIntranet)
+            } catch (e) {
+                alert(e.message)
+            }
+        } else {
+            alert("input time wrong, input can't be empty, or time input must be 1 hour difference minimal")
+        }
+        
     };
 
     return (
