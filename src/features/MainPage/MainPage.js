@@ -4,6 +4,7 @@ import { useDeps } from "../../shared/DepContext";
 import "react-datepicker/dist/react-datepicker.css";
 import TableData from "../../shared/components/TableData";
 import "./MainPage.css";
+import TableDevices from "../../shared/components/TableDevices";
 
 function MainPage() {
 
@@ -17,6 +18,7 @@ function MainPage() {
 
     const [resultInter, setResultInter] = useState() //[{ id: "", site: "", link: "", average_up: 0, uti_traffic_in: 0, uti_traffic_out: 0, traffic_in: 0, traffic_out: 0, notes: "", bandwidth_cap: 0 }])
     const [resultIntra, setResultIntra] = useState()
+    const [resultDevice, setResultDevice] = useState()
 
     let strStartDate = []
     let strEndDate = []
@@ -28,7 +30,7 @@ function MainPage() {
         // } else {
         //     console.log("SALAAAAAAAAAAAAAAAAAAAHHH")
         // }
-      }, [pressedButton, resultInter, resultIntra]);
+      }, [pressedButton, resultInter, resultIntra, resultDevice]);
 
     const handleStartDate = (date) => {
         setInputStartDate(date);
@@ -49,6 +51,10 @@ function MainPage() {
     const handleIntraNotes = (data) => {
         setResultIntra([...data]);
     };
+
+    const handleDeviceNotes = (data) => {
+        setResultDevice([...data]);
+    }
 
     // const handleSensorId = (e) => {
     //     setSensorId(e.target.value)
@@ -101,6 +107,7 @@ function MainPage() {
                 setShowDatas(true)
                 setResultInter(response.resultInternet)
                 setResultIntra(response.resultIntranet)
+                setResultDevice(response.resultCPU)
             } catch (e) {
                 alert(e.message)
             }
@@ -165,7 +172,7 @@ function MainPage() {
                     <button className="button">Add/Delete Sensor</button>               
                 </div>
             </div>
-            {showDatas ? (
+            {/* {showDatas ? (
                 <div>
                     <div>
                         Internet
@@ -176,7 +183,25 @@ function MainPage() {
                         <TableData handlerNotes={handleIntraNotes} result={resultIntra}/>
                     </div>
                 </div>
-            ) : <></>}
+            ) : <></>} */}
+            {showDatas ? resultInter ? (
+                <div>
+                    <div className="text-style">Internet</div>
+                    <TableData handlerNotes={handleInterNotes} result={resultInter}/>
+                </div>
+            ) : <></>  : <></> }
+            {showDatas ? resultIntra ? (
+                <div>
+                    <div className="text-style">Intranet</div>
+                    <TableData handlerNotes={handleIntraNotes} result={resultIntra}/>
+                </div>
+            ) : <></>  : <></> }
+            {showDatas ? resultDevice ? (
+                <div>
+                    <div className="text-style">Devices</div>
+                    <TableDevices handlerNotes={handleDeviceNotes} result={resultDevice}/>
+                </div>
+            ) : <></> : <></> }
         </div>
     )
 }
