@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import TableData from "../../shared/components/TableData";
 import "./MainPage.css";
 import TableDevices from "../../shared/components/TableDevices";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import MyDocument from "../../shared/components/PDFGenerate";
 
 function MainPage() {
 
@@ -81,8 +83,8 @@ function MainPage() {
         var today = new Date()
         var diff = Math.abs(inputStartDate.getTime() - inputEndDate.getTime()) / 3600000;
         
-        if (inputStartDate < today) {
-            if (inputEndDate < today) {
+        if (inputStartDate < today && inputStartDate != null) {
+            if (inputEndDate < today && inputEndDate != null) {
                 if (diff >= 1) {
                     if (selectedOption !== ""){
                         status = true
@@ -170,6 +172,14 @@ function MainPage() {
                 <div>
                     <button className="button" onClick={handleSubmit}>Get Sensor Data</button> 
                     <button className="button">Add/Delete Sensor</button>               
+                </div>
+                <div>
+                    {showDatas ? (
+                        <PDFDownloadLink document={<MyDocument />} fileName="report_06-12-2022">
+                            {({loading}) => (loading ? <></> : <button className="button">Download Report</button> )}
+                        </PDFDownloadLink>
+                    ) : <></>}
+
                 </div>
             </div>
             {/* {showDatas ? (
