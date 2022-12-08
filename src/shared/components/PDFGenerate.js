@@ -6,102 +6,145 @@ import {
   Page,
   View,
   Text,
-  Link,
-  Font,
   StyleSheet,
 } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
-  title: {
-    margin: 20,
-    fontSize: 25,
+  outer_border: {
+    margin: "10mm",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    height: '277mm',
+    width: '190mm',
+  },
+  upper_space: {
+    height: '47mm',
+    backgroundColor: '#ffffff',
+  },
+  lower_space: {
+    height: '40mm',
+    backgroundColor: '#ffffff',
+  },
+  cover_title: {
+    margin: "5mm",
+    height: '150mm',
+    width: '180mm',
+    border:'1mm solid #000000',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
     textAlign: 'center',
-    backgroundColor: '#e4e4e4',
-    textTransform: 'uppercase',
-    fontFamily: 'Oswald',
   },
-  body: {
-    flexGrow: 1,
+  title_font:{
+    fontFamily: 'Times-Roman',
+    fontWeight: 'bold',
+    fontSize: 15,
   },
-  row: {
-    flexGrow: 1,
+  title_space:{
+    margin: '15mm',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  sign_area: {
+    // margin: "5mm",
+    height: '30mm',
+    width: '180mm',
+    //border:'1mm solid #000000',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    textAlign: 'center',
     flexDirection: 'row',
   },
-  block: {
-    flexGrow: 1,
+  sign_box_small: {
+    border:'1mm solid #000000',
+    margin: '2mm',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '42mm',
+    height: '26mm',
+    textAlign: 'center',
   },
-  text: {
-    width: '60%',
-    margin: 10,
-    fontFamily: 'Oswald',
-    textAlign: 'justify',
+  sign_box_big: {
+    border:'1mm solid #000000',
+    margin: '2mm',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '84mm',
+    height: '26mm',
+    textAlign: 'center',
   },
-  fill1: {
-    width: '40%',
-    backgroundColor: '#e14427',
+  sign_font_role: {
+    fontFamily: 'Times-Roman',
+    fontSize: 9,
+    textAlign: 'center',
   },
-  fill2: {
-    flexGrow: 2,
-    backgroundColor: '#e6672d',
+  sign_font_name: {
+    fontFamily: 'Times-Roman',
+    fontSize: 9,
+    textAlign: 'center',
   },
-  fill3: {
-    flexGrow: 2,
-    backgroundColor: '#e78632',
+  sign_name_box: {
+    flexDirection: 'column-reverse',
+    alignItems: 'end',
+    height: '13mm',
   },
-  fill4: {
-    flexGrow: 2,
-    backgroundColor: '#e29e37',
+  sign_role_box: {
+    flexDirection: 'column',
+    alignItems: 'start',
+    height: '13mm',
   },
 });
 
-Font.register({
-  family: 'Oswald',
-  src: 'https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf',
-});
+const MyDocument = (props) => {
 
-const MyDocument = () => (
-  <Document>
-    <Page size="A4">
-      <Link
-        style={styles.title}
-        src="https://es.wikipedia.org/wiki/Lorem_ipsum"
-      >
-        Lorem Ipsum
-      </Link>
-      <View style={styles.body}>
-        <View style={styles.row}>
-          <Text style={styles.text}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum.
-          </Text>
-          <View style={styles.fill1} />
+  const date = props.date;
+  const time = props.time;
+
+  return(
+    <Document>
+      <Page size="A4">
+        <View style={styles.outer_border}>
+          <View style={styles.upper_space}></View>
+          <View style={styles.cover_title}>
+            <View style={styles.title_space}>
+              <Text style={styles.title_font}>DAILY CHECKLIST TEAM OPERATION</Text>
+              <Text style={styles.title_font}>ALL DEVICES NETWORK SITE SINARMAS MINING</Text>
+              <Text style={styles.title_font}>Date : {date}</Text>
+              <Text style={styles.title_font}>Time : {time}</Text>
+            </View>
+          </View>
+          <View style={styles.lower_space}></View>
+          <View style={styles.sign_area}>
+            <View style={styles.sign_box_small}>
+                <View style={styles.sign_role_box}>
+                  <Text style={styles.sign_font_role}>NETWORK ENGINEER</Text>
+                </View>
+                <View style={styles.sign_name_box}>
+                  <Text style={styles.sign_font_name}>DWI KURNIA</Text>
+                </View>
+            </View>
+            <View style={styles.sign_box_big}>
+                <View style={styles.sign_role_box}>
+                  <Text style={styles.sign_font_role}>PROJECT MANAGER</Text>
+                </View>
+                <View style={styles.sign_name_box}>
+                  <Text style={styles.sign_font_name}>GILANG DWI PUTRA</Text>
+                </View>
+            </View>
+            <View style={styles.sign_box_small}>
+                <View style={styles.sign_role_box}>
+                  <Text style={styles.sign_font_role}>APPROVAL IT NETWORK</Text>
+                </View>
+                <View style={styles.sign_name_box}>
+                  <Text style={styles.sign_font_name}>ARWIN HALOMOAN</Text>
+                </View>
+            </View>
+          </View>
         </View>
-        <View style={styles.row}>
-          <View style={styles.fill2} />
-          <Text style={styles.text}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum.
-          </Text>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.text}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum.
-          </Text>
-          <View style={styles.fill3} />
-        </View>
-      </View>
-    </Page>
-  </Document>
-);
+      </Page>
+    </Document>
+  );
+}
 
 export default MyDocument

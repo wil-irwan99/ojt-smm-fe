@@ -175,7 +175,7 @@ function MainPage() {
                 </div>
                 <div>
                     {showDatas ? (
-                        <PDFDownloadLink document={<MyDocument />} fileName="report_06-12-2022">
+                        <PDFDownloadLink document={<MyDocument date={"12-08-2022"} time={'Evening'} />} fileName="report_06-12-2022">
                             {({loading}) => (loading ? <></> : <button className="button">Download Report</button> )}
                         </PDFDownloadLink>
                     ) : <></>}
