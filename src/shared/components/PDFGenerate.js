@@ -7,7 +7,9 @@ import {
   View,
   Text,
   StyleSheet,
+  Image,
 } from '@react-pdf/renderer';
+import SMMLOGO from '../../property/images/sinar-mas.png'
 
 const styles = StyleSheet.create({
   outer_border: {
@@ -22,6 +24,8 @@ const styles = StyleSheet.create({
   upper_space: {
     height: '47mm',
     backgroundColor: '#ffffff',
+    display: 'flex',
+    flexDirection: 'row-reverse',
   },
   lower_space: {
     height: '40mm',
@@ -47,10 +51,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   sign_area: {
-    // margin: "5mm",
     height: '30mm',
     width: '180mm',
-    //border:'1mm solid #000000',
     alignItems: 'center',
     backgroundColor: '#ffffff',
     textAlign: 'center',
@@ -94,6 +96,15 @@ const styles = StyleSheet.create({
     alignItems: 'start',
     height: '13mm',
   },
+  image: {
+    marginVertical: '1mm',
+  },
+  image_box: {
+    width: '44mm',
+    height: '24mm',
+    alignItems: 'flex-end',
+    flexDirection: 'row-reverse',
+  }
 });
 
 const MyDocument = (props) => {
@@ -105,7 +116,14 @@ const MyDocument = (props) => {
     <Document>
       <Page size="A4">
         <View style={styles.outer_border}>
-          <View style={styles.upper_space}></View>
+          <View style={styles.upper_space}>
+            <View style={styles.image_box}>
+              <Image style={styles.image} src={SMMLOGO}/>
+            </View>
+            <View style={styles.image_box}/>
+            <View style={styles.image_box}/>
+            <View style={styles.image_box}/>
+          </View>
           <View style={styles.cover_title}>
             <View style={styles.title_space}>
               <Text style={styles.title_font}>DAILY CHECKLIST TEAM OPERATION</Text>
