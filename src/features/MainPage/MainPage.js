@@ -171,15 +171,21 @@ function MainPage() {
                 </div>
                 <div>
                     <button className="button" onClick={handleSubmit}>Get Sensor Data</button> 
-                    <button className="button">Add/Delete Sensor</button>               
-                </div>
-                <div>
                     {showDatas ? (
-                        <PDFDownloadLink document={<MyDocument date={"09-12-2022"} time={'Morning'} />} fileName="laporan">
+                        <PDFDownloadLink document={<MyDocument date={"09-12-2022"} time={'Morning'} dataInter={resultInter} dataIntra={resultIntra} />} fileName="laporan">
                             {({loading}) => (loading ? <></> : <button className="button">Download Report</button> )}
                         </PDFDownloadLink>
                     ) : <></>}
-
+                    {/* <button className="button">Add/Delete Sensor</button>                */}
+                </div>
+                <div>
+                    {/* {showDatas ? (
+                        <PDFDownloadLink document={<MyDocument date={"09-12-2022"} time={'Morning'} />} fileName="laporan">
+                            {({loading}) => (loading ? <></> : <button className="button">Download Report</button> )}
+                        </PDFDownloadLink>
+                    ) : <></>} */}
+                    <button className="button">Add Sensor</button>
+                    <button className="button">Delete Sensor</button>
                 </div>
             </div>
             {/* {showDatas ? (

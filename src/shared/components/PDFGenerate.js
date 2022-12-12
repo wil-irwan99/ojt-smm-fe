@@ -10,6 +10,7 @@ import {
   Image,
 } from '@react-pdf/renderer';
 import SMMLOGO from '../../property/images/sinar-mas.png'
+import PDFTable from './PDFTable';
 
 const styles = StyleSheet.create({
   outer_border: {
@@ -41,8 +42,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title_font:{
-    fontFamily: 'Times-Roman',
-    fontWeight: 'bold',
+    fontFamily: 'Times-Bold',
     fontSize: 15,
   },
   title_space:{
@@ -161,6 +161,8 @@ const MyDocument = (props) => {
           </View>
         </View>
       </Page>
+      <PDFTable data={props.dataInter} title={'Internet'}/>
+      <PDFTable data={props.dataIntra} title={'Intranet'}/>
     </Document>
   );
 }
