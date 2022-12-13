@@ -172,7 +172,7 @@ function MainPage() {
                 <div>
                     <button className="button" onClick={handleSubmit}>Get Sensor Data</button> 
                     {showDatas ? (
-                        <PDFDownloadLink document={<MyDocument date={"09-12-2022"} time={'Morning'} dataInter={resultInter} dataIntra={resultIntra} />} fileName="laporan">
+                        <PDFDownloadLink document={<MyDocument date={"10-12-2022"} time={'Morning'} dataInter={resultInter} dataIntra={resultIntra} dataDevices={resultDevice} />} fileName="laporan">
                             {({loading}) => (loading ? <></> : <button className="button">Download Report</button> )}
                         </PDFDownloadLink>
                     ) : <></>}

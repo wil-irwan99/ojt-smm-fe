@@ -11,6 +11,7 @@ import {
 } from '@react-pdf/renderer';
 import SMMLOGO from '../../property/images/sinar-mas.png'
 import PDFTable from './PDFTable';
+import PDFTableDevices from './PDFTableDevices';
 
 const styles = StyleSheet.create({
   outer_border: {
@@ -163,6 +164,7 @@ const MyDocument = (props) => {
       </Page>
       <PDFTable data={props.dataInter} title={'Internet'}/>
       <PDFTable data={props.dataIntra} title={'Intranet'}/>
+      <PDFTableDevices data={props.dataDevices} title={'Devices'}/>
     </Document>
   );
 }
