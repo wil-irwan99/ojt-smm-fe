@@ -27,7 +27,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         height: '287mm',
         width: '200mm',
-      },
+    },
+      title_table_box: {
+        flexDirection: 'row',
+        textAlign: 'left',
+        width: '200mm', 
+    },
+    text_font_title: {
+        fontFamily: 'Times-Bold',
+        fontSize: 15,
+    },
 })
 
 
@@ -35,7 +44,9 @@ const PDFTableDevices = (props) => {
     return (
         <Page size="A4">
             <View style={styles.paper_margin}>
-                <Text>{props.title}</Text>
+                <View style={styles.title_table_box}>
+                    <Text style={styles.text_font_title}>{props.title}</Text>
+                </View>
                 <Table data={props.data}>
                     <TableHeader>
                         <TableCell weighting={0.1}>
