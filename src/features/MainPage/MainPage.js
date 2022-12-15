@@ -21,6 +21,8 @@ function MainPage() {
     const [resultInter, setResultInter] = useState() //[{ id: "", site: "", link: "", average_up: 0, uti_traffic_in: 0, uti_traffic_out: 0, traffic_in: 0, traffic_out: 0, notes: "", bandwidth_cap: 0 }])
     const [resultIntra, setResultIntra] = useState()
     const [resultDevice, setResultDevice] = useState()
+    const [timeType, setTimeType] = useState('')
+    //const [dateReport, setDateReport] = useState('')
 
     let strStartDate = []
     let strEndDate = []
@@ -110,6 +112,7 @@ function MainPage() {
                 setResultInter(response.resultInternet)
                 setResultIntra(response.resultIntranet)
                 setResultDevice(response.resultCPU)
+                setTimeType('Morning')
             } catch (e) {
                 alert(e.message)
             }
@@ -172,7 +175,7 @@ function MainPage() {
                 <div>
                     <button className="button" onClick={handleSubmit}>Get Sensor Data</button> 
                     {showDatas ? (
-                        <PDFDownloadLink document={<MyDocument date={"10-12-2022"} time={'Morning'} dataInter={resultInter} dataIntra={resultIntra} dataDevices={resultDevice} />} fileName="laporan">
+                        <PDFDownloadLink document={<MyDocument date={inputStartDate.toLocaleDateString("en-IN")} time={timeType} dataInter={resultInter} dataIntra={resultIntra} dataDevices={resultDevice} />} fileName="laporan">
                             {({loading}) => (loading ? <></> : <button className="button">Download Report</button> )}
                         </PDFDownloadLink>
                     ) : <></>}

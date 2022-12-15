@@ -60,8 +60,7 @@ const styles = StyleSheet.create({
     text_font_title: {
         fontFamily: 'Times-Bold',
         fontSize: 15,
-    }
-    
+    },
 })
 
 
