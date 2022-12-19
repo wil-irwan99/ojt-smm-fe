@@ -162,9 +162,9 @@ const MyDocument = (props) => {
           </View>
         </View>
       </Page>
-      <PDFTable data={props.dataInter} title={'Internet'}/>
-      <PDFTable data={props.dataIntra} title={'Intranet'}/>
-      <PDFTableDevices data={props.dataDevices} title={'Devices'}/>
+      <PDFTable data={props.dataInter} title={'1. Internet Data'}/>
+      <PDFTable data={props.dataIntra} title={'2. Intranet Data'}/>
+      <PDFTableDevices data={props.dataDevices} title={'3. Devices Data'}/>
     </Document>
   );
 }

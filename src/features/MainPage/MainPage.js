@@ -84,15 +84,23 @@ function MainPage() {
         var status = false
         var today = new Date()
         var diff = Math.abs(inputStartDate.getTime() - inputEndDate.getTime()) / 3600000;
+        var hours = inputStartDate.getHours()
+        let daytype = ''
         
         if (inputStartDate < today && inputStartDate != null) {
             if (inputEndDate < today && inputEndDate != null) {
-                if (diff >= 1) {
+                if (inputStartDate < inputEndDate && diff >= 1) {
                     if (selectedOption !== ""){
                         status = true
                     }
                 }
             }
+        }
+
+        if (hours < 12) {
+            daytype = "Morning"
+        } else if (hours >= 12) {
+            daytype = "Evening"
         }
 
         if (status) {
@@ -112,7 +120,7 @@ function MainPage() {
                 setResultInter(response.resultInternet)
                 setResultIntra(response.resultIntranet)
                 setResultDevice(response.resultCPU)
-                setTimeType('Morning')
+                setTimeType(daytype)
             } catch (e) {
                 alert(e.message)
             }
@@ -175,7 +183,7 @@ function MainPage() {
                 <div>
                     <button className="button" onClick={handleSubmit}>Get Sensor Data</button> 
                     {showDatas ? (
-                        <PDFDownloadLink document={<MyDocument date={inputStartDate.toLocaleDateString("en-IN")} time={timeType} dataInter={resultInter} dataIntra={resultIntra} dataDevices={resultDevice} />} fileName="laporan">
+                        <PDFDownloadLink document={<MyDocument date={inputStartDate.toLocaleDateString("en-IN")} time={timeType} dataInter={resultInter} dataIntra={resultIntra} dataDevices={resultDevice} />} fileName={"Laporan_" + inputStartDate.toLocaleDateString("es-CL") + "_" + timeType}>
                             {({loading}) => (loading ? <></> : <button className="button">Download Report</button> )}
                         </PDFDownloadLink>
                     ) : <></>}
