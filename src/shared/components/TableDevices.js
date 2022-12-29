@@ -12,9 +12,9 @@ function TableDevices(props) {
         <table>
             <thead>
                 <tr>
-                    <th className="normal">Location</th>
+                    <th className="normal">Site</th>
+                    <th className="normal">Device</th>
                     <th className="normal">Type</th>
-                    <th className="normal">Category</th>
                     <th className="normal">Usage</th>
                     <th className="normal">Condition</th>
                     <th className="normal">Notes</th>

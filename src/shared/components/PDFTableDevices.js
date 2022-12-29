@@ -51,7 +51,12 @@ const PDFTableDevices = (props) => {
                     <TableHeader>
                         <TableCell weighting={0.1}>
                             <View style={styles.header_box}>
-                                <Text style={styles.text_font_header}>Location</Text>
+                                <Text style={styles.text_font_header}>Site</Text>
+                            </View>
+                        </TableCell>
+                        <TableCell weighting={0.25}>
+                            <View style={styles.header_box}>
+                                <Text style={styles.text_font_header}>Device</Text>
                             </View>
                         </TableCell>
                         <TableCell weighting={0.15}>
@@ -59,17 +64,12 @@ const PDFTableDevices = (props) => {
                                 <Text style={styles.text_font_header}>Type</Text>
                             </View>
                         </TableCell>
-                        <TableCell weighting={0.15}>
-                            <View style={styles.header_box}>
-                                <Text style={styles.text_font_header}>Category</Text>
-                            </View>
-                        </TableCell>
                         <TableCell weighting={0.1}>
                             <View style={styles.header_box}>
                                 <Text style={styles.text_font_header}>Usage</Text>
                             </View>
                         </TableCell>
-                        <TableCell weighting={0.25}>
+                        <TableCell weighting={0.15}>
                             <View style={styles.header_box}>
                                 <Text style={styles.text_font_header}>Condition</Text>
                             </View>
@@ -81,11 +81,11 @@ const PDFTableDevices = (props) => {
                         </TableCell>
                     </TableHeader>
                     <TableBody textAlign='center'>
-                        <DataTableCell weighting={0.1} style={styles.text_font_data} getContent={(r) => r.location}/>
+                        <DataTableCell weighting={0.1} style={styles.text_font_data} getContent={(r) => r.site}/>
+                        <DataTableCell weighting={0.25} style={styles.text_font_data} getContent={(r) => r.device}/>
                         <DataTableCell weighting={0.15} style={styles.text_font_data} getContent={(r) => r.type}/>
-                        <DataTableCell weighting={0.15} style={styles.text_font_data} getContent={(r) => r.category}/>
                         <DataTableCell weighting={0.1} style={styles.text_font_data} getContent={(r) => String(r.usage) + ' %'}/>
-                        <DataTableCell weighting={0.25} style={styles.text_font_data} getContent={(r) => r.condition}/>
+                        <DataTableCell weighting={0.15} style={styles.text_font_data} getContent={(r) => r.condition}/>
                         <DataTableCell weighting={0.25} style={styles.text_font_data} getContent={(r) => r.notes}/>
                     </TableBody>
                 </Table>
