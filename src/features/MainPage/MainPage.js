@@ -7,6 +7,7 @@ import "./MainPage.css";
 import TableDevices from "../../shared/components/TableDevices";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import MyDocument from "../../shared/components/PDFGenerate";
+import Loading from "../../shared/components/Loading";
 
 function MainPage() {
 
@@ -22,6 +23,7 @@ function MainPage() {
     const [resultIntra, setResultIntra] = useState()
     const [resultDevice, setResultDevice] = useState()
     const [timeType, setTimeType] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     //const [dateReport, setDateReport] = useState('')
 
     let strStartDate = []
@@ -34,7 +36,7 @@ function MainPage() {
         // } else {
         //     console.log("SALAAAAAAAAAAAAAAAAAAAHHH")
         // }
-      }, [pressedButton, resultInter, resultIntra, resultDevice]);
+      }, [pressedButton, resultInter, resultIntra, resultDevice, isLoading]);
 
     const handleStartDate = (date) => {
         setInputStartDate(date);
@@ -105,6 +107,7 @@ function MainPage() {
 
         if (status) {
             try {
+                setIsLoading(true)
                 strStartDate = convDate(inputStartDate)
                 strEndDate = convDate(inputEndDate)
                 const response = await getDataService.getData({
@@ -123,6 +126,8 @@ function MainPage() {
                 setTimeType(daytype)
             } catch (e) {
                 alert(e.message)
+            } finally {
+                setIsLoading(false)
             }
         } else {
             alert("input time wrong, input can't be empty, or time input must be 1 hour difference minimal")
@@ -229,6 +234,7 @@ function MainPage() {
                     <TableDevices handlerNotes={handleDeviceNotes} result={resultDevice}/>
                 </div>
             ) : <></> : <></> }
+            {isLoading ? <Loading/> : <></>}
         </div>
     )
 }
