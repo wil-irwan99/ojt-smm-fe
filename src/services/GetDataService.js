@@ -1,11 +1,16 @@
 export const getDataService = ({doGet, doPost}) => {
-    const addSensor = async (namaMenu) => {
+    const addSensor = async (data) => {
         try {
             return await doPost({
-                url: '/data/add',
-                data: {
-                    menuName: namaMenu
-                }
+                url: '/sensor/add',
+                // data: {
+                //     site: data.site, 
+                //     link: data.link, 
+                //     id: data.id, 
+                //     type: data.type, 
+                //     bandwidth: data.bandwidth
+                // }
+                data: data
             })
         } catch (e) {
             throw e

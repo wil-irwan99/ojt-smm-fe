@@ -76,6 +76,10 @@ function MainPage() {
         setIsAddSensor(true)
     }
 
+    const handleCloseAddSensor = () => {
+        setIsAddSensor(false)
+    }
+
     const convDate = (inputDate) => {
         let strInputDate = inputDate.toLocaleString('sv-SE');
         let convDate = []
@@ -241,7 +245,7 @@ function MainPage() {
                 </div>
             ) : <></> : <></> }
             {isLoading ? <Loading/> : <></>}
-            {isAddSensor ? <AddSensor/> : <></>}
+            {isAddSensor ? <AddSensor closeTab={handleCloseAddSensor}/> : <></>}
         </div>
     )
 }
