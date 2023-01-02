@@ -8,6 +8,7 @@ import TableDevices from "../../shared/components/TableDevices";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import MyDocument from "../../shared/components/PDFGenerate";
 import Loading from "../../shared/components/Loading";
+import AddSensor from "./AddSensorPopOut";
 
 function MainPage() {
 
@@ -24,6 +25,7 @@ function MainPage() {
     const [resultDevice, setResultDevice] = useState()
     const [timeType, setTimeType] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const [isAddSensor, setIsAddSensor] = useState(false)
     //const [dateReport, setDateReport] = useState('')
 
     let strStartDate = []
@@ -36,7 +38,7 @@ function MainPage() {
         // } else {
         //     console.log("SALAAAAAAAAAAAAAAAAAAAHHH")
         // }
-      }, [pressedButton, resultInter, resultIntra, resultDevice, isLoading]);
+      }, [pressedButton, resultInter, resultIntra, resultDevice, isLoading, isAddSensor]);
 
     const handleStartDate = (date) => {
         setInputStartDate(date);
@@ -69,6 +71,10 @@ function MainPage() {
     const handleOption = (e) => {
         setSelectedOption(e.target.value)
     };
+
+    const handleAddButton = () => {
+        setIsAddSensor(true)
+    }
 
     const convDate = (inputDate) => {
         let strInputDate = inputDate.toLocaleString('sv-SE');
@@ -200,7 +206,7 @@ function MainPage() {
                             {({loading}) => (loading ? <></> : <button className="button">Download Report</button> )}
                         </PDFDownloadLink>
                     ) : <></>} */}
-                    <button className="button">Add Sensor</button>
+                    <button className="button" onClick={handleAddButton}>Add Sensor</button>
                     <button className="button">Delete Sensor</button>
                 </div>
             </div>
@@ -235,6 +241,7 @@ function MainPage() {
                 </div>
             ) : <></> : <></> }
             {isLoading ? <Loading/> : <></>}
+            {isAddSensor ? <AddSensor/> : <></>}
         </div>
     )
 }
