@@ -1,6 +1,7 @@
 import "./AddSensorPopOut.css";
 import { useDeps } from "../../shared/DepContext";
 import { useState } from "react";
+import Loading from "../../shared/components/Loading";
 
 const AddSensor = (props) => {
 
@@ -10,7 +11,8 @@ const AddSensor = (props) => {
     const [id, setId] = useState('');
     const [type, setType] = useState('');
     const [bandwidth, setBandwidth] = useState(0);
-    const [result, setResult] = useState('');
+    const [isLoading, setIsLoading] = useState(false)
+    // [result, setResult] = useState('');
 
     // useEffect(() => {
     // }, [movies]);
@@ -29,6 +31,7 @@ const AddSensor = (props) => {
 
     const handleType = (e) => {
         setType(e.target.value)
+        setBandwidth(0)
     };
 
     const handleBandwidth = (e) => {
@@ -43,9 +46,7 @@ const AddSensor = (props) => {
             if (link !== '') {
                 if (id !== '') {
                     if (type !== ''){
-                        if (bandwidth !== null){
-                            status = true
-                        }
+                        status = true
                     }
                 }
             }
@@ -53,26 +54,22 @@ const AddSensor = (props) => {
 
         if (status) {
             console.log(site, link, id, type, bandwidth)
+            let bandwidthConv = bandwidth.toString();
             try {
+                setIsLoading(true)
                 const response = await getDataService.addSensor({
                     site: site, 
                     link: link, 
                     id: id, 
                     type: type, 
-                    bandwidth: 0, //problem di variable angka javascript
+                    bandwidth: bandwidthConv, //problem di variable angka javascript
                 })
-                setResult(response.message)
+                //setResult(response.message)
+                alert(response.message)
             } catch (e) {
                 alert(e.message)
             } finally {
-                // var answer = window.confirm(result);
-                // if (answer) {
-                //     props.closeTab
-                // }
-                // else {
-                //     props.closeTab
-                // }
-                alert(result)
+                setIsLoading(false)
             }
         } else {
             alert("input can't be empty")
@@ -130,13 +127,14 @@ const AddSensor = (props) => {
                 <div className="text-style">Bandwidth (MBps)</div>
                 <div className="symbol-style">:</div>
                 <div className="input-style">
-                    <input type="number" value={bandwidth} onChange={handleBandwidth}/> 
+                    {type !== "internet" && type !=="intranet" ? <>0</> : <input type="number" value={bandwidth} onChange={handleBandwidth}/> }
                 </div>
             </div>
             <div className="button-container">
                 <button className="button-add button-effect" onClick={handleSubmit}>Add</button>
                 <button className="button-cancel button-effect" onClick={props.closeTab}>Cancel</button>
             </div>
+            {isLoading ? <Loading/> : <></>}
         </div>
     )
 }
