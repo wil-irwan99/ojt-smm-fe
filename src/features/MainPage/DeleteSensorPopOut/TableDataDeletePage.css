@@ -1,0 +1,35 @@
+table {
+    height: 420px;
+    width: 480px;
+    border: none;
+}
+
+th, td {
+    border: none;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    text-align: center;
+    width: fit-content;
+}
+
+.th-style {
+    background-color: rgba(164, 142, 142, 0.473);
+}
+
+.tr-style {
+    background-color: rgba(113, 107, 107, 0.274);
+}
+
+.button-delete {
+    text-align: center;
+    background-color:rgba(237, 39, 39, 0.993);
+    border: solid #000000;
+    border-radius: 8px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.button-delete-effect:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}

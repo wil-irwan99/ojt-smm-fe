@@ -9,6 +9,7 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import MyDocument from "../../shared/components/PDFGenerate";
 import Loading from "../../shared/components/Loading";
 import AddSensor from "./AddSensorPopOut";
+import DeleteSensor from "./DeleteSensorPopOut";
 
 function MainPage() {
 
@@ -26,6 +27,7 @@ function MainPage() {
     const [timeType, setTimeType] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [isAddSensor, setIsAddSensor] = useState(false)
+    const [isDeleteSensor, setIsDeleteSensor] = useState(false)
     //const [dateReport, setDateReport] = useState('')
 
     let strStartDate = []
@@ -38,7 +40,7 @@ function MainPage() {
         // } else {
         //     console.log("SALAAAAAAAAAAAAAAAAAAAHHH")
         // }
-      }, [pressedButton, resultInter, resultIntra, resultDevice, isLoading, isAddSensor]);
+      }, [pressedButton, resultInter, resultIntra, resultDevice, isLoading, isAddSensor, isDeleteSensor]);
 
     const handleStartDate = (date) => {
         setInputStartDate(date);
@@ -76,8 +78,16 @@ function MainPage() {
         setIsAddSensor(true)
     }
 
+    const handleDeleteButton = () => {
+        setIsDeleteSensor(true)
+    }
+
     const handleCloseAddSensor = () => {
         setIsAddSensor(false)
+    }
+
+    const handleCloseDeleteSensor = () => {
+        setIsDeleteSensor(false)
     }
 
     const convDate = (inputDate) => {
@@ -175,11 +185,6 @@ function MainPage() {
                         />
                     </label>
                 </div>
-                {/* <div>
-                    <label>Sensor ID: <br/>
-                        <input type="text" onChange={handleSensorId} placeholder="Input Sensor ID"/>
-                    </label>
-                </div> */}
                 <div>
                     <label>Site: <br/>
                         <select id="site-names" value={selectedOption} onChange={handleOption}>
@@ -211,21 +216,9 @@ function MainPage() {
                         </PDFDownloadLink>
                     ) : <></>} */}
                     <button className="button" onClick={handleAddButton}>Add Sensor</button>
-                    <button className="button">Delete Sensor</button>
+                    <button className="button" onClick={handleDeleteButton}>Delete Sensor</button>
                 </div>
             </div>
-            {/* {showDatas ? (
-                <div>
-                    <div>
-                        Internet
-                        <TableData handlerNotes={handleInterNotes} result={resultInter}/>
-                    </div>
-                    <div>
-                        Intranet
-                        <TableData handlerNotes={handleIntraNotes} result={resultIntra}/>
-                    </div>
-                </div>
-            ) : <></>} */}
             {showDatas ? resultInter ? (
                 <div>
                     <div className="text-style">Internet</div>
@@ -246,6 +239,7 @@ function MainPage() {
             ) : <></> : <></> }
             {isLoading ? <Loading/> : <></>}
             {isAddSensor ? <AddSensor closeTab={handleCloseAddSensor}/> : <></>}
+            {isDeleteSensor ? <DeleteSensor closeTab={handleCloseDeleteSensor}/> : <></>}
         </div>
     )
 }
