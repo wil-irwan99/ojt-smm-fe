@@ -38,6 +38,9 @@ const DeleteSensor = (props) => {
                     {page !== lastPage ? <button onClick={nextPage}>{">"}</button>  : <></>}
                 </div>
             </div>
+            <div className="cancel-button-container">
+                <button className="cancel-button-style cancel-button-effect">Cancel</button>
+            </div>
         </div>
     )
 }

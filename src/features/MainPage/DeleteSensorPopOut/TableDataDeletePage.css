@@ -1,10 +1,10 @@
-table {
+.table-style {
     height: 420px;
     width: 480px;
     border: none;
 }
 
-th, td {
+.th-style, .td-style {
     border: none;
     margin-top: 1px;
     margin-bottom: 1px;
@@ -12,11 +12,11 @@ th, td {
     width: fit-content;
 }
 
-.th-style {
+.th-style-bg {
     background-color: rgba(164, 142, 142, 0.473);
 }
 
-.tr-style {
+.tr-style-bg {
     background-color: rgba(113, 107, 107, 0.274);
 }
 

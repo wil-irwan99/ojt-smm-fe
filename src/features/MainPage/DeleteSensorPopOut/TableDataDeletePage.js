@@ -20,14 +20,14 @@ function TableDeletePage(props) {
     };
 
     return (
-        <table>
-            <thead className="th-style">
+        <table className="table-style">
+            <thead className="th-style-bg">
                 <tr>
-                    <th>Site</th>
-                    <th>Link/Device</th>
-                    <th>ID</th>
-                    <th>Type</th>
-                    <th/>
+                    <th className="th-style">Site</th>
+                    <th className="th-style">Link/Device</th>
+                    <th className="th-style">ID</th>
+                    <th className="th-style">Type</th>
+                    <th className="th-style"/>
                 </tr>
             </thead>
             <tbody>
@@ -35,15 +35,15 @@ function TableDeletePage(props) {
                     let style = ""
                     
                     if (index % 2 !== 0) {
-                        style = "tr-style"
+                        style = "tr-style-bg"
                     }
 
                     return (
                     <tr className={style} key={item.id}>
                         {Object.entries(item).slice(0, 4).map((val) => {
-                            return <td>{val[1]}</td>
+                            return <td className="td-style">{val[1]}</td>
                         })}
-                        <td>
+                        <td className="td-style">
                             <button className="button-delete button-delete-effect" onClick={handleDelete}>Delete</button>
                         </td>
                     </tr>
