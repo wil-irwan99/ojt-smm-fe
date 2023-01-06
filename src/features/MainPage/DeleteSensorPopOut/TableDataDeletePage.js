@@ -2,18 +2,7 @@ import "./TableDataDeletePage.css"
 
 function TableDeletePage(props) {
 
-    const data = [
-        { id: 1, a: "Bread", b: 50, c: 12, d: 15, e: 25},
-        { id: 2, a: "Butter", b: 47, c: 25, d: 27, e: 33},
-        { id: 3, a: "Jam", b: 58, c: 83, d: 12, e: 90},
-        { id: 4, a: "Jam", b: 58, c: 83, d: 12, e: 90},
-        { id: 5, a: "Jam", b: 58, c: 83, d: 12, e: 90},
-        { id: 6, a: "Jam", b: 58, c: 83, d: 12, e: 90},
-        { id: 7, a: "Jam", b: 58, c: 83, d: 12, e: 90},
-        { id: 8, a: "Jam", b: 58, c: 83, d: 12, e: 90},
-        { id: 9, a: "Jam", b: 58, c: 83, d: 12, e: 90},
-        { id: 10, a: "Jam", b: 58, c: 83, d: 12, e: 90},
-    ]
+    const data = props.data
 
     const handleDelete = (id) => {
 

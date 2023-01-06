@@ -1,17 +1,19 @@
 export const getDataService = ({doGet, doPost}) => {
+
     const addSensor = async (data) => {
         try {
             return await doPost({
                 url: '/sensor/add',
-                // data: {
-                //     site: data.site, 
-                //     link: data.link, 
-                //     id: data.id, 
-                //     type: data.type, 
-                //     bandwidth: data.bandwidth
-                // }
                 data: data
             })
+        } catch (e) {
+            throw e
+        }
+    }
+
+    const getSensorList = async (page) => {
+        try {
+            return await doGet({url: `/sensor/get-sensors?page=${page}`})
         } catch (e) {
             throw e
         }
@@ -26,5 +28,5 @@ export const getDataService = ({doGet, doPost}) => {
     }
 
 
-    return {addSensor, getData}
+    return {addSensor, getData, getSensorList}
 }
