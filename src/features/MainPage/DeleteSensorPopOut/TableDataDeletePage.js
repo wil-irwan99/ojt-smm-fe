@@ -4,10 +4,6 @@ function TableDeletePage(props) {
 
     const data = props.data
 
-    const handleDelete = (id) => {
-
-    };
-
     return (
         <table className="table-style">
             <thead className="th-style-bg">
@@ -28,12 +24,12 @@ function TableDeletePage(props) {
                     }
 
                     return (
-                    <tr className={style} key={item.id}>
+                    <tr className={style} key={item["Id"]}>
                         {Object.entries(item).slice(0, 4).map((val) => {
                             return <td className="td-style">{val[1]}</td>
                         })}
                         <td className="td-style">
-                            <button className="button-delete button-delete-effect" onClick={handleDelete}>Delete</button>
+                            <button className="button-delete button-delete-effect" onClick={() => props.handleDelete(item["Id"])}>Delete</button>
                         </td>
                     </tr>
                     )

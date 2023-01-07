@@ -11,6 +11,7 @@ const DeleteSensor = (props) => {
     const [page, setPage] = useState(1)
     const [lastPage, setLastPage] = useState(15)
     const [isLoading, setIsLoading] = useState(false)
+    const [doneDelete, setDoneDelete] = useState(false)
     const [data, setData] = useState([])
 
     useEffect(() => {
@@ -18,7 +19,6 @@ const DeleteSensor = (props) => {
             try {
                 setIsLoading(true)
                 const response = await getDataService.getSensorList(page)
-                //setLastPage(response.lastPage)
                 setData(response.dataSensors)
                 setLastPage(response.lastPage)
             } catch (e) {
@@ -28,7 +28,8 @@ const DeleteSensor = (props) => {
             }
         }
         getData();
-    }, [page]);
+        setDoneDelete(false);
+    }, [page, doneDelete]);
 
     const nextPage = () => {
         setPage(page + 1)
@@ -38,11 +39,23 @@ const DeleteSensor = (props) => {
         setPage(page - 1)
     };
 
+    const handleDelete = async (id) => {
+        try {
+            await getDataService.deleteSensor({
+                id: id
+            })
+        } catch (e) {
+            alert(e.message)
+        } finally {
+            setDoneDelete(true)
+        }
+    };
+
     return (
         <div className="big-frame">
             <div className="delete-title-box">Delete Sensor</div>
             <div className="table-sensor-list">
-                <TableDeletePage data={data}/>
+                <TableDeletePage handleDelete={handleDelete} data={data}/>
             </div>
             <div className="paging-container">
                 <div className="paging-sub-container">

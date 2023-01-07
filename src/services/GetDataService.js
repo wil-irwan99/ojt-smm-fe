@@ -11,6 +11,17 @@ export const getDataService = ({doGet, doPost}) => {
         }
     }
 
+    const deleteSensor = async (data) => {
+        try {
+            return await doPost({
+                url: '/sensor/delete',
+                data: data
+            })
+        } catch (e) {
+            throw e
+        }
+    }
+
     const getSensorList = async (page) => {
         try {
             return await doGet({url: `/sensor/get-sensors?page=${page}`})
@@ -28,5 +39,5 @@ export const getDataService = ({doGet, doPost}) => {
     }
 
 
-    return {addSensor, getData, getSensorList}
+    return {addSensor, getData, getSensorList, deleteSensor}
 }
