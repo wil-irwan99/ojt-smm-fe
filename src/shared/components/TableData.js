@@ -39,12 +39,19 @@ function TableData(props) {
             </thead>
             <tbody>
                 {data.map((item, index) => (
-                    <tr key={item.id}>
-                        {Object.entries(item).slice(1).map((val) => {
+                    <tr key={item["Id"]}>
+                        {Object.entries(item).slice(1).map((val, ind) => {
+                            let unit = ""
+                            if (ind > 1 && ind <= 4) {
+                                unit = " %"
+                            } else if (ind > 4) {
+                                unit = " MBps"
+                            }
+
                             if (val[0] !== "notes") {
-                                return <td>{val[1]}</td>
+                                return <td>{val[1] + unit}</td>
                             } else {
-                                return <td><textarea rows="5" cols="30" onChange={e => handleNotes(e, index, data)}></textarea></td>
+                                return <td><textarea placeholder={val[1]} rows="5" cols="30" onChange={e => handleNotes(e, index, data)}></textarea></td>
                             }
                         })}
                     </tr>
